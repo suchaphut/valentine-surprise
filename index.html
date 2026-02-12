@@ -1142,6 +1142,12 @@
       🎵
     </button>
 
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+      <source src="music.mp3" type="audio/mpeg" />
+      <source src="background-music.mp3" type="audio/mpeg" />
+    </audio>
+
     <script>
       // ===== CONFIG =====
       const CONFIG = {
@@ -1215,6 +1221,7 @@
           lovePage.classList.remove("hidden");
           initializeGallery();
           createSparkles();
+          autoPlayMusic();
           window.scrollTo({ top: 0, behavior: "smooth" });
         } else {
           showError("Try again, my love 💕");
@@ -1321,12 +1328,28 @@
 
       // ===== MUSIC =====
       const musicToggle = document.getElementById("musicToggle");
+      const bgMusic = document.getElementById("bgMusic");
       let isPlaying = false;
 
       musicToggle.addEventListener("click", () => {
         isPlaying = !isPlaying;
-        musicToggle.textContent = isPlaying ? "🎶" : "🎵";
+        if (isPlaying) {
+          bgMusic.play().catch((e) => console.log("Audio play failed:", e));
+          musicToggle.textContent = "🎶";
+        } else {
+          bgMusic.pause();
+          musicToggle.textContent = "🎵";
+        }
       });
+
+      // Auto play when unlocked
+      function autoPlayMusic() {
+        bgMusic.play().catch((e) => {
+          console.log("Auto play blocked, user needs to click music button");
+        });
+        isPlaying = true;
+        musicToggle.textContent = "🎶";
+      }
 
       // ===== INIT =====
       window.addEventListener("load", () => {
