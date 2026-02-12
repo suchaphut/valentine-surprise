@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ffd6e8 0%, #ffb3d9 50%, #ff99cc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== CONTAINER & LAYOUT ===== */
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* ===== PIN PAGE STYLES ===== */
+        .pin-page {
+            text-align: center;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .pin-page.hidden {
+            display: none;
+        }
+
+        .pin-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: #d91e63;
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .pin-subtitle {
+            font-size: 1.2rem;
+            color: #c2185b;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .pin-input-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .pin-input {
+            width: 70px;
+            height: 70px;
+            font-size: 2rem;
+            text-align: center;
+            border: 3px solid #ff1493;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #d91e63;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .pin-input:focus {
+            outline: none;
+            border-color: #c2185b;
+            box-shadow: 0 0 20px rgba(201, 24, 91, 0.4);
+            transform: scale(1.05);
+        }
+
+        .pin-input::placeholder {
+            color: #ffb3d9;
+        }
+
+        .pin-button {
+            background: linear-gradient(135deg, #ff1493 0%, #d91e63 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(217, 30, 99, 0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .pin-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(217, 30, 99, 0.5);
+        }
+
+        .pin-button:active {
+            transform: translateY(-1px);
+        }
+
+        .error-message {
+            color: #c2185b;
+            font-size: 1rem;
+            margin-top: 20px;
+            font-weight: 500;
+            min-height: 24px;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* ===== LOVE PAGE STYLES ===== */
+        .love-page {
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+            max-width: 900px;
+        }
+
+        .love-page.hidden {
+            display: none;
+        }
+
+        .love-main-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: #d91e63;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            animation: slideDown 1s ease-out;
+        }
+
+        .love-name {
+            font-size: 2.5rem;
+            color: #c2185b;
+            margin-bottom: 30px;
+            font-weight: 700;
+            animation: slideDown 1.2s ease-out;
+        }
+
+        .love-message {
+            font-size: 1.1rem;
+            color: #6d1b47;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-weight: 400;
+            animation: slideDown 1.4s ease-out;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .kiss-button {
+            background: linear-gradient(135deg, #ff1493 0%, #d91e63 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(217, 30, 99, 0.3);
+            font-family: 'Poppins', sans-serif;
+            margin-top: 20px;
+        }
+
+        .kiss-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(217, 30, 99, 0.5);
+        }
+
+        .kiss-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* ===== GALLERY STYLES ===== */
+        .gallery-section {
+            margin-top: 60px;
+            animation: slideUp 1.6s ease-out;
+        }
+
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #d91e63;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(217, 30, 99, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ===== FLOATING HEARTS ANIMATION ===== */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.8;
+            animation: float 6s ease-in infinite;
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 0.5s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 1.5s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 2.5s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 0.8s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 1.8s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 2.2s; }
+
+        /* ===== SPARKLE EFFECT ===== */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .sparkle-particle {
+            position: absolute;
+            font-size: 1.2rem;
+            animation: sparkleFloat 1s ease-out forwards;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* ===== MODAL STYLES ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: white;
+            transform: rotate(90deg);
+        }
+
+        /* ===== MUSIC TOGGLE ===== */
+        .music-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff1493 0%, #d91e63 100%);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(217, 30, 99, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(217, 30, 99, 0.5);
+        }
+
+        .music-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .pin-title {
+                font-size: 2.5rem;
+            }
+
+            .pin-input {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .love-main-text {
+                font-size: 2.5rem;
+            }
+
+            .love-name {
+                font-size: 1.8rem;
+            }
+
+            .love-message {
+                font-size: 1rem;
+            }
+
+            .gallery-title {
+                font-size: 1.5rem;
+            }
+
+            .music-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pin-title {
+                font-size: 2rem;
+            }
+
+            .pin-input {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .love-main-text {
+                font-size: 2rem;
+            }
+
+            .love-name {
+                font-size: 1.5rem;
+            }
+
+            .love-message {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💗</div>
+        <div class="heart">💝</div>
+        <div class="heart">💓</div>
+        <div class="heart">💞</div>
+        <div class="heart">💘</div>
+        <div class="heart">💟</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- PIN PAGE -->
+        <div class="pin-page" id="pinPage">
+            <h1 class="pin-title">💖 ปลดล็อค ❤️</h1>
+            <p class="pin-subtitle">ใส่วันครบรอบของเรา</p>
+            
+            <div class="pin-input-container">
+                <input type="text" class="pin-input" id="pin1" maxlength="1" placeholder="0" inputmode="numeric">
+                <input type="text" class="pin-input" id="pin2" maxlength="1" placeholder="0" inputmode="numeric">
+                <input type="text" class="pin-input" id="pin3" maxlength="1" placeholder="0" inputmode="numeric">
+                <input type="text" class="pin-input" id="pin4" maxlength="1" placeholder="0" inputmode="numeric">
+            </div>
+
+            <button class="pin-button" id="pinButton">เข้าสู่หัวใจ ❤️</button>
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+
+        <!-- LOVE PAGE -->
+        <div class="love-page hidden" id="lovePage">
+            <h1 class="love-main-text">Happy Valentine's Day 💖</h1>
+            <h2 class="love-name" id="loverName">ที่รักของฉัน</h2>
+            
+            <p class="love-message" id="loveMessage">
+                ในวันพิเศษนี้ ฉันอยากบอกว่า<br>
+                คุณคือสิ่งที่สวยงามที่สุดในชีวิตของฉัน<br>
+                ขอบคุณที่อยู่เคียงข้างฉันเสมอ<br>
+                และทำให้ทุกวันเป็นวันที่พิเศษ<br>
+                ฉันรักคุณมากๆ 💕
+            </p>
+
+            <button class="kiss-button" id="kissButton">กดเพื่อรับจุ๊บ 💋</button>
+
+            <!-- GALLERY SECTION -->
+            <div class="gallery-section">
+                <h3 class="gallery-title">📸 ความทรงจำของเรา</h3>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery items will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content" id="modalContent">
+            <img id="modalImage" src="" alt="Full size image">
+            <button class="modal-close" id="modalClose">✕</button>
+        </div>
+    </div>
+
+    <!-- Music Toggle Button -->
+    <button class="music-toggle" id="musicToggle" title="Toggle Music">🎵</button>
+
+    <script>
+        // ===== CONFIGURATION =====
+        // 🔧 เปลี่ยนค่าเหล่านี้ตามต้องการ
+        const CONFIG = {
+            correctPin: "1402", // 📅 วันครบรอบ (เปลี่ยนเป็นวันครบรอบของคุณ เช่น 1402 = 14 กุมภาพันธ์)
+            loverName: "ที่รักของฉัน", // 💕 ชื่อแฟน (เปลี่ยนเป็นชื่อของคนที่คุณรัก)
+            galleryImages: [
+                // 📸 เปลี่ยนลิงก์รูปตรง src ได้เลย หรือนำรูปไปใส่ในโฟลเดอร์ images แล้วเปลี่ยนชื่อไฟล์
+                // ตัวอย่าง: "images/photo1.jpg", "images/photo2.jpg" เป็นต้น
+                "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500&h=500&fit=crop"
+            ]
+        };
+
+        // ===== PIN PAGE LOGIC =====
+        const pinInputs = document.querySelectorAll('.pin-input');
+        const pinButton = document.getElementById('pinButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const pinPage = document.getElementById('pinPage');
+        const lovePage = document.getElementById('lovePage');
+
+        // Auto-focus next input
+        pinInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                // Allow only numbers
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                
+                if (e.target.value && index < pinInputs.length - 1) {
+                    pinInputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !input.value && index > 0) {
+                    pinInputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Check PIN
+        pinButton.addEventListener('click', checkPin);
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPin();
+        });
+
+        function checkPin() {
+            const pin = Array.from(pinInputs).map(input => input.value).join('');
+            
+            if (pin.length !== 4) {
+                showError('กรุณากรอก PIN 4 หลัก');
+                return;
+            }
+
+            if (pin === CONFIG.correctPin) {
+                // Correct PIN
+                errorMessage.textContent = '';
+                pinPage.classList.add('hidden');
+                lovePage.classList.remove('hidden');
+                initializeGallery();
+                createSparkles();
+            } else {
+                // Wrong PIN
+                showError('ลองใหม่อีกครั้งนะคนเก่ง 💕');
+                pinInputs.forEach(input => input.value = '');
+                pinInputs[0].focus();
+            }
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.animation = 'none';
+            setTimeout(() => {
+                errorMessage.style.animation = 'shake 0.5s ease-in-out';
+            }, 10);
+        }
+
+        // ===== LOVE PAGE LOGIC =====
+        document.getElementById('loverName').textContent = CONFIG.loverName;
+
+        // Kiss button - Create sparkles
+        document.getElementById('kissButton').addEventListener('click', createSparkles);
+
+        function createSparkles() {
+            const sparkles = ['✨', '💫', '⭐', '🌟', '💖', '💕', '💗'];
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle-particle';
+                sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+                
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                
+                const tx = (Math.random() - 0.5) * 200;
+                const ty = (Math.random() - 0.5) * 200;
+                sparkle.style.setProperty('--tx', tx + 'px');
+                sparkle.style.setProperty('--ty', ty + 'px');
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+
+        // ===== GALLERY LOGIC =====
+        function initializeGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+
+            CONFIG.galleryImages.forEach((imageUrl, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = `Memory ${index + 1}`;
+                
+                galleryItem.appendChild(img);
+                
+                // Click to open modal
+                galleryItem.addEventListener('click', () => openModal(imageUrl));
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Modal functions
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+
+        function openModal(imageSrc) {
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // ===== MUSIC TOGGLE =====
+        const musicToggle = document.getElementById('musicToggle');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            musicToggle.textContent = isPlaying ? '🎶' : '🎵';
+            // You can add actual music playing logic here
+            // For now, it's just a visual toggle
+        });
+
+        // ===== INITIALIZE =====
+        // Focus on first PIN input on load
+        window.addEventListener('load', () => {
+            pinInputs[0].focus();
+        });
+    </script>
+</body>
+</html>
